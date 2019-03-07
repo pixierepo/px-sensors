@@ -1,5 +1,8 @@
 from PXSensors import PXSensor
 import evdev
+import os
+
+os.system('./scripts/enableSensors.sh')
 
 devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
 for device in devices:
@@ -14,5 +17,4 @@ while True:
 	while accel.read() is False:
 		continue
 
-	print(gyro.values['x'])
-	time.sleep(3)
+	print(accel.values['x'])
